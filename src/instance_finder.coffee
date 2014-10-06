@@ -16,4 +16,6 @@ module.exports = class InstanceFinder
     @ec2.describeInstances { Filters: filters }, (err, data) ->
       return callback(err) if err?
 
-      callback null, lodash.map(data.Reservations, ((result) -> result.Instances[0]))
+      retrievedInstances = lodash.map(data.Reservations, ((result) -> result.Instances))
+
+      callback null, lodash.flatten(retrievedInstances)
