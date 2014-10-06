@@ -8,8 +8,8 @@ module.exports = class InstanceFinder
     AWS = requiredAWS
   ) ->
     AWS.config.region = config.region
-    AWS.config.credentials = new AWS.Credentials(config.access_key_id,
-                                                 config.secret_access_key)
+    AWS.config.credentials = new AWS.Credentials(config.accessKeyId,
+                                                 config.secretAccessKey)
     @ec2 = new AWS.EC2
 
   findWithFilters: (filters, callback) ->
