@@ -6,14 +6,32 @@ Simplifies interaction with the
 
 ## Querying Instances
 
-With filters, as described in the [aws-sdk documentation](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#describeInstances-property):
+`TagQuery` will filter running instances to
+those that match the tag key and value pairs passed to it.
 
 ```Javascript
+
 var awsConfig = {
   accessKeyId: 'Your aws key',
   secretAccessKey: 'secret access key',
   region: 'us-west'
 };
+
+var tags = {
+  tagKey: 'tagValue'
+};
+
+var tagQuery = new AWSEC2.TagQuery(awsConfig);
+
+tagQuery.findByTags(tags, function(err, instances) {
+  console.log(instances);
+});
+
+```
+
+The same query using filters, as described in the [aws-sdk documentation](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#describeInstances-property):
+
+```Javascript
 
 var AWSEC2 = require("node-aws-ec2");
 var instanceFinder = new AWSEC2.InstanceFinder(awsConfig);
@@ -30,23 +48,6 @@ var filters = [
 ];
 
 instanceFinder.findWithFilters(filters, function(err, instances) {
-  console.log(instances);
-});
-
-```
-
-The same query using tags, which will filter running instances to
-those that match the tag key and value pairs passed to it.
-
-```Javascript
-
-var tags = {
-  tagKey: 'tagValue'
-};
-
-var tagQuery = new AWSEC2.TagQuery(awsConfig);
-
-tagQuery.findByTags(tags, function(err, instances) {
   console.log(instances);
 });
 
