@@ -10,6 +10,7 @@ Simplifies interaction with the
 those that match the tag key and value pairs passed to it.
 
 ```Javascript
+var AWSEC2 = require("node-aws-ec2");
 
 var awsConfig = {
   accessKeyId: 'Your aws key',
@@ -33,7 +34,6 @@ The same query using filters, as described in the [aws-sdk documentation](http:/
 
 ```Javascript
 
-var AWSEC2 = require("node-aws-ec2");
 var instanceFinder = new AWSEC2.InstanceFinder(awsConfig);
 
 var filters = [
