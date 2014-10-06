@@ -1,7 +1,7 @@
 lodash = require "lodash"
-RoleQuery = require "../src/role_query"
+TagQuery = require "../src/tag_query"
 
-describe "RoleQuery", ->
+describe "TagQuery", ->
 
   subject = null
   stubInstanceFinder = null
@@ -14,12 +14,12 @@ describe "RoleQuery", ->
     beforeEach ->
       stubInstanceFinder = sinon.stub()
 
-      subject = new RoleQuery(stubConfig, stubInstanceFinder)
+      subject = new TagQuery(stubConfig, stubInstanceFinder)
 
     it "makes a new instance finder with the config", ->
       stubInstanceFinder.should.have.been.calledWith stubConfig
 
-  describe "#findByRoles", ->
+  describe "#findByTags", ->
     beforeEach ->
       stubInstanceFinderInstance =
         findWithFilters: sinon.stub()
@@ -27,7 +27,7 @@ describe "RoleQuery", ->
 
       callback = sinon.stub()
 
-      roles =
+      tags =
         environment: "acceptance"
         Primary: "true"
         socket_bridge: "true"
@@ -51,8 +51,8 @@ describe "RoleQuery", ->
         }
       ]
 
-      subject = new RoleQuery(stubConfig, stubInstanceFinder)
-      subject.findByRoles roles, callback
+      subject = new TagQuery(stubConfig, stubInstanceFinder)
+      subject.findByTags tags, callback
 
     it "queries the instance finder with the correct filters", ->
       stub = stubInstanceFinderInstance.findWithFilters

@@ -1,3 +1,3 @@
 module.exports
-  RoleQuery: require "./src/role_query"
+  TagQuery: require "./src/tag_query"
   InstanceFinder: require "./src/instance_finder"
